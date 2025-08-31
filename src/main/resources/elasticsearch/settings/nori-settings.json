@@ -1,0 +1,79 @@
+{
+  "index": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0
+  },
+  "analysis": {
+    "tokenizer": {
+      "nori_mixed_tokenizer": {
+        "type": "nori_tokenizer",
+        "decompound_mode": "mixed",
+        "user_dictionary_rules": [
+          "갤럭시북",
+          "맥북프로",
+          "아이패드프로"
+        ]
+      },
+      "nori_none_tokenizer": {
+        "type": "nori_tokenizer",
+        "decompound_mode": "none"
+      }
+    },
+    "filter": {
+      "nori_stop_filter": {
+        "type": "nori_part_of_speech",
+        "stoptags": [
+          "E",
+          "IC",
+          "J",
+          "MAG",
+          "MAJ",
+          "MM",
+          "SP",
+          "SSC",
+          "SSO",
+          "SC",
+          "SE",
+          "XPN",
+          "XSA",
+          "XSN",
+          "XSV",
+          "UNA",
+          "NA",
+          "VSV"
+        ]
+      },
+      "edge_ngram": {
+        "type": "edge_ngram",
+        "min_gram": 1,
+        "max_gram": 10
+      }
+    },
+    "analyzer": {
+      "nori_standard": {
+        "type": "custom",
+        "tokenizer": "nori_mixed_tokenizer",
+        "filter": [
+          "nori_stop_filter",
+          "lowercase"
+        ]
+      },
+      "nori_search": {
+        "type": "custom",
+        "tokenizer": "nori_none_tokenizer",
+        "filter": [
+          "nori_stop_filter",
+          "lowercase"
+        ]
+      },
+      "edge_ngram": {
+        "type": "custom",
+        "tokenizer": "standard",
+        "filter": [
+          "lowercase",
+          "edge_ngram"
+        ]
+      }
+    }
+  }
+}

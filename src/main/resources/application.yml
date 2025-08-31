@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-elasticsearch-app
+  elasticsearch:
+    uris: http://localhost:9200
+    connection-timeout: 5s
+    socket-timeout: 30s
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.suyeong.springelasticsearchapp: DEBUG
+    org.springframework.data.elasticsearch: DEBUG
